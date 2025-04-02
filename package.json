@@ -1,6 +1,6 @@
 {
     "name": "ton-global-config",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "main": "dist/index.js",
     "repository": "https://github.com/tact-lang/ton-contract-config.git",
     "description": "Library for working with TON config contract",
