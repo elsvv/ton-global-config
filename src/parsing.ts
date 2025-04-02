@@ -10,8 +10,8 @@ import {
 } from './type';
 import { cellToConfigDict } from './configDict';
 
-export function parseRawCellToConfigDict(cell: Cell): Dictionary<number, Cell> {
-    return cellToConfigDict(cell);
+export function parseRawCellToConfigDict(cell: Cell): Config {
+    return parseConfig(cellToConfigDict(cell));
 }
 
 export function parseConfig(configs: Dictionary<number, Cell>): Config {
