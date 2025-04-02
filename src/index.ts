@@ -1,4 +1,3 @@
-
 // Types
 export {
     Config,
@@ -8,12 +7,13 @@ export {
     ConfigStoragePrices,
     ConfigValidatorDescriptor,
     ConfigValidatorSet,
-    ConfigValidatorPunishment
+    ConfigValidatorPunishment,
 } from './type';
 
 // Parsers
 export {
     parseConfig,
+    parseRawCellToConfigDict,
     configParseMasterAddress,
     configParseValidatorDescr,
     configParseValidatorSet,
@@ -24,10 +24,10 @@ export {
     configParseGlobalVersion,
     configParseValidatorPunishment,
     configParseMsessagePrices,
-    parseVotingSetup
+    parseVotingSetup,
 } from './parsing';
 
 // Contract
-export {
-    ConfigContract
-} from './ConfigContract';
+export { ConfigContract } from './ConfigContract';
+
+export { cellToConfigDict, configDictToCell } from './configDict';
