@@ -1,4 +1,4 @@
-import { Address, Dictionary } from "ton-core";
+import { Address, Dictionary } from '@ton/core';
 
 export type ConfigVotingSetup = {
     minTotalRounds: number;
@@ -9,29 +9,29 @@ export type ConfigVotingSetup = {
     maxStoreSec: number;
     bitPrice: number;
     cellPrice: number;
-}
+};
 
 export type ConfigStoragePrices = {
-    utimeSince: number,
-    bitPricePs: bigint,
-    cellPricePs: bigint,
-    mcBitPricePs: bigint,
-    mcCellPricePs: bigint
-}
+    utimeSince: number;
+    bitPricePs: bigint;
+    cellPricePs: bigint;
+    mcBitPricePs: bigint;
+    mcCellPricePs: bigint;
+};
 
 export type ConfigGasLimitsPrices = {
-    flatLimit: bigint,
-    flatGasPrice: bigint,
+    flatLimit: bigint;
+    flatGasPrice: bigint;
     other: {
-        gasPrice: bigint,
-        gasLimit: bigint,
-        specialGasLimit: bigint | null,
-        gasCredit: bigint,
-        blockGasLimit: bigint,
-        freezeDueLimit: bigint,
-        deleteDueLimit: bigint
-    }
-}
+        gasPrice: bigint;
+        gasLimit: bigint;
+        specialGasLimit: bigint | null;
+        gasCredit: bigint;
+        blockGasLimit: bigint;
+        freezeDueLimit: bigint;
+        deleteDueLimit: bigint;
+    };
+};
 
 export type ConfigMessagePrice = {
     lumpPrice: bigint;
@@ -40,13 +40,13 @@ export type ConfigMessagePrice = {
     ihrPriceFactor: number;
     firstFrac: number;
     nextFrac: number;
-}
+};
 
 export type ConfigValidatorDescriptor = {
-    publicKey: Buffer,
-    weight: bigint,
-    adnlAddress: Buffer | null
-}
+    publicKey: Buffer;
+    weight: bigint;
+    adnlAddress: Buffer | null;
+};
 
 export type ConfigValidatorSet = {
     timeSince: number;
@@ -54,7 +54,7 @@ export type ConfigValidatorSet = {
     total: number;
     main: number;
     list: Dictionary<number, ConfigValidatorDescriptor>;
-}
+};
 
 export type ConfigValidatorPunishment = {
     defaultFlatFine: bigint;
@@ -68,22 +68,22 @@ export type ConfigValidatorPunishment = {
     mediumInterval: number;
     mediumFlatMult: number;
     mediumProportionalMult: number;
-}
+};
 
 export type Config = {
-    configAddress: Address,
-    electorAddress: Address,
-    minterAddress: Address | null,
-    feeCollectorAddress: Address | null,
-    dnsRootAddress: Address | null,
+    configAddress: Address;
+    electorAddress: Address;
+    minterAddress: Address | null;
+    feeCollectorAddress: Address | null;
+    dnsRootAddress: Address | null;
     globalVersion: {
-        version: number,
-        capabilities: bigint
-    },
+        version: number;
+        capabilities: bigint;
+    };
     voting: {
-        normalParams: ConfigVotingSetup,
-        criticalParams: ConfigVotingSetup,
-    },
+        normalParams: ConfigVotingSetup;
+        criticalParams: ConfigVotingSetup;
+    };
     validating: {
         minStake: bigint;
         maxStake: bigint;
@@ -96,23 +96,23 @@ export type Config = {
         electorsStartBefore: number;
         electorsEndBefore: number;
         stakeHeldFor: number;
-    },
+    };
     validators: {
-        prevValidators: ConfigValidatorSet | null,
-        prevTempValidators: ConfigValidatorSet | null,
-        currentValidators: ConfigValidatorSet,
-        currentTempValidators: ConfigValidatorSet | null,
-        nextValidators: ConfigValidatorSet | null,
-        nextTempValidators: ConfigValidatorSet | null
-    },
-    punishment: ConfigValidatorPunishment | null,
-    storagePrices: ConfigStoragePrices[],
+        prevValidators: ConfigValidatorSet | null;
+        prevTempValidators: ConfigValidatorSet | null;
+        currentValidators: ConfigValidatorSet;
+        currentTempValidators: ConfigValidatorSet | null;
+        nextValidators: ConfigValidatorSet | null;
+        nextTempValidators: ConfigValidatorSet | null;
+    };
+    punishment: ConfigValidatorPunishment | null;
+    storagePrices: ConfigStoragePrices[];
     gasPrices: {
-        masterchain: ConfigGasLimitsPrices,
-        workchain: ConfigGasLimitsPrices,
-    },
+        masterchain: ConfigGasLimitsPrices;
+        workchain: ConfigGasLimitsPrices;
+    };
     messagePrices: {
-        masterchain: ConfigMessagePrice,
-        workchain: ConfigMessagePrice,
-    }
+        masterchain: ConfigMessagePrice;
+        workchain: ConfigMessagePrice;
+    };
 };

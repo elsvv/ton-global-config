@@ -2,9 +2,33 @@
 
 exports[`ConfigContract should parse mainnet config 1`] = `
 {
-  "configAddress": kf9VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVQft,
-  "dnsRootAddress": kf_lZ1T4NCb2mwkme9h2rJfESCE0W34ma9lWp7-_uY3zXIBg,
-  "electorAddress": kf8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM_BP,
+  "configAddress": Address {
+    "hash": Buffer{5555555555555555555555555555555555555555555555555555555555555555},
+    "toRaw": [Function],
+    "toRawString": [Function],
+    "toString": [Function],
+    "toStringBuffer": [Function],
+    "workChain": -1,
+    Symbol(nodejs.util.inspect.custom): [Function],
+  },
+  "dnsRootAddress": Address {
+    "hash": Buffer{e56754f83426f69b09267bd876ac97c44821345b7e266bd956a7bfbfb98df35c},
+    "toRaw": [Function],
+    "toRawString": [Function],
+    "toString": [Function],
+    "toStringBuffer": [Function],
+    "workChain": -1,
+    Symbol(nodejs.util.inspect.custom): [Function],
+  },
+  "electorAddress": Address {
+    "hash": Buffer{3333333333333333333333333333333333333333333333333333333333333333},
+    "toRaw": [Function],
+    "toRawString": [Function],
+    "toString": [Function],
+    "toStringBuffer": [Function],
+    "workChain": -1,
+    Symbol(nodejs.util.inspect.custom): [Function],
+  },
   "feeCollectorAddress": null,
   "gasPrices": {
     "masterchain": {
@@ -56,7 +80,15 @@ exports[`ConfigContract should parse mainnet config 1`] = `
       "nextFrac": 21845,
     },
   },
-  "minterAddress": kf8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIue,
+  "minterAddress": Address {
+    "hash": Buffer{0000000000000000000000000000000000000000000000000000000000000000},
+    "toRaw": [Function],
+    "toRawString": [Function],
+    "toString": [Function],
+    "toStringBuffer": [Function],
+    "workChain": -1,
+    Symbol(nodejs.util.inspect.custom): [Function],
+  },
   "punishment": null,
   "storagePrices": [
     {
@@ -3326,9 +3358,33 @@ exports[`ConfigContract should parse mainnet config 1`] = `
 
 exports[`ConfigContract should parse testnet config 1`] = `
 {
-  "configAddress": kf9VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVQft,
-  "dnsRootAddress": kf_v5x0Thgr6pq6ur2NvkWhIf4DxAxsL-Nk5rknT6n99oEkd,
-  "electorAddress": kf8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM_BP,
+  "configAddress": Address {
+    "hash": Buffer{5555555555555555555555555555555555555555555555555555555555555555},
+    "toRaw": [Function],
+    "toRawString": [Function],
+    "toString": [Function],
+    "toStringBuffer": [Function],
+    "workChain": -1,
+    Symbol(nodejs.util.inspect.custom): [Function],
+  },
+  "dnsRootAddress": Address {
+    "hash": Buffer{efe71d13860afaa6aeaeaf636f9168487f80f1031b0bf8d939ae49d3ea7f7da0},
+    "toRaw": [Function],
+    "toRawString": [Function],
+    "toString": [Function],
+    "toStringBuffer": [Function],
+    "workChain": -1,
+    Symbol(nodejs.util.inspect.custom): [Function],
+  },
+  "electorAddress": Address {
+    "hash": Buffer{3333333333333333333333333333333333333333333333333333333333333333},
+    "toRaw": [Function],
+    "toRawString": [Function],
+    "toString": [Function],
+    "toStringBuffer": [Function],
+    "workChain": -1,
+    Symbol(nodejs.util.inspect.custom): [Function],
+  },
   "feeCollectorAddress": null,
   "gasPrices": {
     "masterchain": {
@@ -3380,7 +3436,15 @@ exports[`ConfigContract should parse testnet config 1`] = `
       "nextFrac": 21845,
     },
   },
-  "minterAddress": kf8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIue,
+  "minterAddress": Address {
+    "hash": Buffer{0000000000000000000000000000000000000000000000000000000000000000},
+    "toRaw": [Function],
+    "toRawString": [Function],
+    "toString": [Function],
+    "toStringBuffer": [Function],
+    "workChain": -1,
+    Symbol(nodejs.util.inspect.custom): [Function],
+  },
   "punishment": null,
   "storagePrices": [
     {

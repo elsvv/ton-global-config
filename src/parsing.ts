@@ -1,5 +1,18 @@
-import { Address, Cell, Dictionary, DictionaryValue, Slice } from "ton-core";
-import { Config, ConfigGasLimitsPrices, ConfigMessagePrice, ConfigStoragePrices, ConfigValidatorDescriptor, ConfigValidatorPunishment, ConfigValidatorSet } from "./type";
+import { Address, Cell, Dictionary, DictionaryValue, Slice } from '@ton/core';
+import {
+    Config,
+    ConfigGasLimitsPrices,
+    ConfigMessagePrice,
+    ConfigStoragePrices,
+    ConfigValidatorDescriptor,
+    ConfigValidatorPunishment,
+    ConfigValidatorSet,
+} from './type';
+import { cellToConfigDict } from './configDict';
+
+export function parseRawCellToConfigDict(cell: Cell): Dictionary<number, Cell> {
+    return cellToConfigDict(cell);
+}
 
 export function parseConfig(configs: Dictionary<number, Cell>): Config {
     return {
@@ -15,7 +28,7 @@ export function parseConfig(configs: Dictionary<number, Cell>): Config {
         validating: {
             ...required(configs, 15, configParseElectionsConfig),
             ...required(configs, 16, configParseValidatorsConfig),
-            ...required(configs, 17, configParseStakeConfig)
+            ...required(configs, 17, configParseStakeConfig),
         },
         validators: {
             prevValidators: optional(configs, 32, configParseValidatorSet),
@@ -23,7 +36,7 @@ export function parseConfig(configs: Dictionary<number, Cell>): Config {
             currentValidators: required(configs, 34, configParseValidatorSet),
             currentTempValidators: optional(configs, 35, configParseValidatorSet),
             nextValidators: optional(configs, 36, configParseValidatorSet),
-            nextTempValidators: optional(configs, 37, configParseValidatorSet)
+            nextTempValidators: optional(configs, 37, configParseValidatorSet),
         },
         punishment: optional(configs, 40, configParseValidatorPunishment),
 
@@ -40,7 +53,6 @@ export function parseConfig(configs: Dictionary<number, Cell>): Config {
     };
 }
 
-
 export function configParseMasterAddress(slice: Cell) {
     return new Address(-1, slice.beginParse().loadBuffer(32));
 }
@@ -56,13 +68,13 @@ export function configParseValidatorDescr(slice: Slice) {
         return {
             publicKey,
             weight,
-            adnlAddress: null
+            adnlAddress: null,
         };
     } else if (header === 0x73) {
         return {
             publicKey,
             weight,
-            adnlAddress: slice.loadBuffer(32)
+            adnlAddress: slice.loadBuffer(32),
         };
     } else {
         throw Error('Invalid config');
@@ -96,19 +108,19 @@ export function configParseValidatorSet(cell: Cell): ConfigValidatorSet {
                 return {
                     publicKey,
                     weight: slice.loadUintBig(64),
-                    adnlAddress: null
+                    adnlAddress: null,
                 };
             } else if (header === 0x73) {
                 return {
                     publicKey,
                     weight: slice.loadUintBig(64),
-                    adnlAddress: slice.loadBuffer(32)
+                    adnlAddress: slice.loadBuffer(32),
                 };
             } else {
                 throw Error('Invalid config');
             }
-        }
-    }
+        },
+    };
     let header = slice.loadUint(8);
     if (header === 0x11) {
         let timeSince = slice.loadUint(32);
@@ -121,7 +133,7 @@ export function configParseValidatorSet(cell: Cell): ConfigValidatorSet {
             timeUntil,
             total,
             main,
-            list
+            list,
         };
     } else if (header === 0x12) {
         let timeSince = slice.loadUint(32);
@@ -129,7 +141,7 @@ export function configParseValidatorSet(cell: Cell): ConfigValidatorSet {
         let total = slice.loadUint(16);
         let main = slice.loadUint(16);
         let totalWeight = slice.loadUintBig(64);
-        let list = slice.loadDict(Dictionary.Keys.Int(16), ValidatorDescriptorValue)
+        let list = slice.loadDict(Dictionary.Keys.Int(16), ValidatorDescriptorValue);
         let t = 0n;
         for (let a of list) {
             t += a[1].weight;
@@ -142,7 +154,7 @@ export function configParseValidatorSet(cell: Cell): ConfigValidatorSet {
             timeUntil,
             total,
             main,
-            list
+            list,
         };
     } else {
         throw Error('Invalid config');
@@ -159,7 +171,7 @@ export function configParseElectionsConfig(cell: Cell) {
         validatorsElectedFor,
         electorsStartBefore,
         electorsEndBefore,
-        stakeHeldFor
+        stakeHeldFor,
     };
 }
 
@@ -171,7 +183,7 @@ export function configParseValidatorsConfig(cell: Cell) {
     return {
         maxValidators,
         maxMainValidators,
-        minValidators
+        minValidators,
     };
 }
 
@@ -185,7 +197,7 @@ export function configParseStakeConfig(cell: Cell) {
         minStake,
         maxStake,
         minTotalStake,
-        maxStakeFactor
+        maxStakeFactor,
     };
 }
 
@@ -214,10 +226,10 @@ export function configParseStoragePrices(cell: Cell): ConfigStoragePrices[] {
                 bitPricePs,
                 cellPricePs,
                 mcBitPricePs,
-                mcCellPricePs
+                mcCellPricePs,
             };
-        }
-    }
+        },
+    };
     let slice = cell.beginParse();
     let result: ConfigStoragePrices[] = [];
     let dict = slice.loadDictDirect(Dictionary.Keys.Int(32), StoragePriceValue);
@@ -233,8 +245,8 @@ export function configParseGlobalVersion(cell: Cell) {
     let capabilities = slice.loadUintBig(64);
     return {
         version,
-        capabilities
-    }
+        capabilities,
+    };
 }
 
 export function configParseValidatorPunishment(cell: Cell): ConfigValidatorPunishment {
@@ -267,7 +279,7 @@ export function configParseValidatorPunishment(cell: Cell): ConfigValidatorPunis
         longProportionalMult,
         mediumInterval,
         mediumFlatMult,
-        mediumProportionalMult
+        mediumProportionalMult,
     };
 }
 
@@ -288,7 +300,7 @@ function parseGasLimitsInternal(slice: Slice) {
             gasCredit,
             blockGasLimit,
             freezeDueLimit,
-            deleteDueLimit
+            deleteDueLimit,
         };
     } else if (tag === 0xdd) {
         const gasPrice = slice.loadUintBig(64);
@@ -304,8 +316,8 @@ function parseGasLimitsInternal(slice: Slice) {
             gasCredit,
             blockGasLimit,
             freezeDueLimit,
-            deleteDueLimit
-        }
+            deleteDueLimit,
+        };
     } else {
         throw Error('Invalid config');
     }
@@ -321,8 +333,8 @@ export function configParseGasLimitsPrices(cell: Cell): ConfigGasLimitsPrices {
         return {
             flatLimit,
             flatGasPrice,
-            other
-        }
+            other,
+        };
     } else {
         throw Error('Invalid config');
     }
@@ -340,7 +352,7 @@ export function configParseMsessagePrices(cell: Cell): ConfigMessagePrice {
         cellPrice: slice.loadUintBig(64),
         ihrPriceFactor: slice.loadUint(32),
         firstFrac: slice.loadUint(16),
-        nextFrac: slice.loadUint(16)
+        nextFrac: slice.loadUint(16),
     };
 }
 
@@ -358,7 +370,16 @@ function parseProposalSetup(slice: Slice) {
     let maxStoreSec = slice.loadUint(32);
     let bitPrice = slice.loadUint(32);
     let cellPrice = slice.loadUint(32);
-    return { minTotalRounds, maxTotalRounds, minWins, maxLoses, minStoreSec, maxStoreSec, bitPrice, cellPrice };
+    return {
+        minTotalRounds,
+        maxTotalRounds,
+        minWins,
+        maxLoses,
+        minStoreSec,
+        maxStoreSec,
+        bitPrice,
+        cellPrice,
+    };
 }
 
 // cfg_vote_setup#91 normal_params:^ConfigProposalSetup critical_params:^ConfigProposalSetup = ConfigVotingSetup;
@@ -385,7 +406,11 @@ function required<T>(configs: Dictionary<number, Cell>, id: number, v: (cell: Ce
     return v(c);
 }
 
-function optional<T>(configs: Dictionary<number, Cell>, id: number, v: (cell: Cell) => T): T | null {
+function optional<T>(
+    configs: Dictionary<number, Cell>,
+    id: number,
+    v: (cell: Cell) => T
+): T | null {
     let res = configs.get(id);
     if (res) {
         return v(res);
