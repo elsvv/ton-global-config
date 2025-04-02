@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   Added `parseRawCellToConfigDict` utility function to parse a raw cell into a global config
 
-## [Unreleased]
+## [0.0.2] - 2025-04-02
 
 ### Added
 
